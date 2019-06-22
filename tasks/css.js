@@ -8,13 +8,14 @@ import plumber from 'gulp-plumber';
 import rev from 'gulp-rev';
 import stylus from 'gulp-stylus';
 
+const srcPath = path.resolve(__dirname, '../src');
 const distPath = path.resolve(__dirname, '../dist');
 const distPathStatic = path.resolve(distPath, 'static');
 
 export const css = () => new Promise(resolve => {
 
-    del(distPath + '/app-*.css').then(() => gulp
-        .src(path.resolve(__dirname, '../src/app.styl'))
+    del(path.resolve(distPathStatic, 'app-*.css')).then(() => gulp
+        .src(path.resolve(srcPath, 'app.styl'))
         .pipe(plumber({
             errorHandler: err => {
                 gulpUtil.beep();
@@ -36,7 +37,7 @@ export const css = () => new Promise(resolve => {
 });
 
 export const watch = series => () => new Promise(resolve => {
-    const paths = [path.resolve(__dirname, '../src/**/*.styl')];
+    const paths = [path.resolve(srcPath, '**/*.styl')];
     gulp.watch(paths, { interval: 100 }, gulp.series(css, ...series));
     resolve();
 });

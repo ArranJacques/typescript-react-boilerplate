@@ -7,6 +7,7 @@ import plumber from 'gulp-plumber';
 import rename from 'gulp-rename';
 import shell from 'gulp-shell';
 
+const srcPath = path.resolve(__dirname, '../src');
 const distPath = path.resolve(__dirname, '../dist');
 
 const getCssManifest = () => JSON.parse(
@@ -37,7 +38,7 @@ export const html = () => new Promise(resolve => {
     data.body = '';
     data.state = JSON.stringify({});
 
-    gulp.src(path.resolve(__dirname, '../src/index.html'))
+    gulp.src(path.resolve(srcPath, 'index.html'))
         .pipe(plumber({
             errorHandler: err => {
                 gulpUtil.beep();

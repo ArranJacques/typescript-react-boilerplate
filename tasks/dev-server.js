@@ -2,12 +2,15 @@ import Browser from 'browser-sync';
 import gulp from 'gulp';
 import { watch as watchCss } from './css';
 import { html } from './html';
+import { watch as watchImages } from './images';
 import { watch as watchJs } from './scripts';
 
 const browserConfig = {
+    index: 'index.html',
+    notify: false,
     open: false,
     server: 'dist',
-    index: 'index.html'
+    single: true
 };
 
 export const devServer = () => new Promise(resolve => {
@@ -26,5 +29,5 @@ export const devServer = () => new Promise(resolve => {
 
     const series = [html, reloadServer];
 
-    gulp.series(watchCss(series), watchJs(series), startServer)();
+    gulp.series(watchCss(series), watchJs(series), watchImages(series), startServer)();
 });

@@ -5,12 +5,13 @@ import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import WebpackAssetsManifest from 'webpack-assets-manifest';
 
 const mode = process.env.NODE_ENV || 'development';
+const srcPath = path.resolve(__dirname, '../src');
 const distPath = path.resolve(__dirname, '../dist');
 const distPathStatic = path.resolve(distPath, 'static');
 
 const config = {
     mode: mode,
-    context: path.resolve(__dirname, '../src'),
+    context: srcPath,
     devtool: mode === 'development' ? 'inline-source-maps' : 'source-maps',
     entry: { main: ['./app.tsx'] },
     output: {
@@ -23,6 +24,16 @@ const config = {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
                 exclude: [/node_modules/]
+            },
+            {
+                test: /\.svg$/,
+                use: [
+                    { loader: 'babel-loader' },
+                    {
+                        loader: 'react-svg-loader',
+                        options: { jsx: true }
+                    }
+                ]
             }
         ]
     },
@@ -36,10 +47,7 @@ const config = {
         })
     ],
     resolve: {
-        modules: [
-            path.resolve(__dirname, '../src'),
-            'node_modules'
-        ],
+        modules: [srcPath, 'node_modules'],
         extensions: ['.tsx', '.ts', '.js']
     },
     optimization: {
@@ -72,8 +80,8 @@ export const scripts = () => new Promise(resolve => webpack(config, (err, stats)
 export const watch = series => () => new Promise(resolve => {
 
     const paths = [
-        path.resolve(__dirname, '../src/**/*.ts'),
-        path.resolve(__dirname, '../src/**/*.tsx')
+        path.resolve(srcPath, '**/*.ts'),
+        path.resolve(srcPath, '**/*.tsx')
     ];
 
     gulp.watch(paths, { interval: 100 }, gulp.series(scripts, ...series));
