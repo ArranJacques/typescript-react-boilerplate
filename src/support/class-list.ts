@@ -1,7 +1,8 @@
-type ClassFunction = () => string | Array<string>;
-export type Classes = string | Array<string> | ClassFunction;
+type ClassFunction = () => string | string[];
+export type Classes = string | string[] | ClassFunction;
+export type ClassList = string[]
 
-export function cl(...classes: Classes[]): string[] {
+export function cl(...classes: Classes[]): ClassList {
     let list: string[] = [];
     classes.forEach(c => {
         const cla = typeof c === 'function' ? c() : c;
@@ -10,7 +11,7 @@ export function cl(...classes: Classes[]): string[] {
     return list;
 }
 
-export function clPush(list: string[], classes: Classes, condition?: any): string[] {
+export function clPush(list: ClassList, classes: Classes, condition?: any): ClassList {
 
     const con = arguments.length === 2 ? true : condition;
 
@@ -30,6 +31,11 @@ export function clPush(list: string[], classes: Classes, condition?: any): strin
     return list;
 }
 
-export function clPrint(list: string[]): string {
+export function clPrint(list: ClassList): string {
     return list.join(' ');
+}
+
+export function clApplyBemModifiers(classList: ClassList, base: string, modifiers: BemModifiers): ClassList {
+    const mods = Array.isArray(modifiers) ? modifiers : [modifiers];
+    return clPush(classList, mods.map(m => base + '--' + m));
 }
