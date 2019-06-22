@@ -3,7 +3,7 @@ import thunk, { ThunkMiddleware } from 'redux-thunk';
 import getAppReducer from 'services/app/data/reducers/app-reducer';
 import State from 'foundation/state';
 
-export default () => createStore(
-    combineReducers({ app: getAppReducer() }),
+export default (initialState: LooseObject) => createStore(
+    combineReducers({ app: getAppReducer(initialState.app) }),
     applyMiddleware(thunk as ThunkMiddleware<State>)
 );

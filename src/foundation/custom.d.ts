@@ -3,6 +3,10 @@ declare module '*.svg' {
     export default content;
 }
 
+interface Window {
+    __PRELOADED_STATE__: {};
+}
+
 type BemModifiers = string | string[]
 
 interface ClassName {

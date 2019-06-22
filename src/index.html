@@ -8,6 +8,9 @@
     </head>
     <body>
         <div id="app">{{ body|safe }}</div>
+        <script>
+            window.__PRELOADED_STATE__ = {{ state|safe }};
+        </script>
         {% for script in js %}
         <script src="/static/{{ script }}"></script>
         {% endfor %}
