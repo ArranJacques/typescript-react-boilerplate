@@ -29,5 +29,5 @@ npm run build-dev
 #### Production build
 
 ```bash
-npm run build-prod
+npm run build
 ```
