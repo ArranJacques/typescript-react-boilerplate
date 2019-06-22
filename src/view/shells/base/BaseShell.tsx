@@ -1,11 +1,11 @@
-import React, { ComponentType, ReactElement } from 'react';
+import React, { ComponentType, ReactNode } from 'react';
 
 interface Props {
-    body: ComponentType | ReactElement
+    body: ComponentType | ReactNode
 }
 
 export default class BaseShell extends React.PureComponent<Props> {
-    render(): ReactElement {
+    render(): ReactNode {
         const { body } = this.props;
         return (
             <div className="base-shell">

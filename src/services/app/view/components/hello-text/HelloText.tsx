@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactNode } from 'react';
 
 interface Props {
     randomiseText: () => void
@@ -12,7 +12,7 @@ export default class HelloText extends React.PureComponent<Props> {
         setInterval(randomiseText, 3000);
     }
 
-    public render(): ReactElement {
+    public render(): ReactNode {
 
         const { text } = this.props;
 
