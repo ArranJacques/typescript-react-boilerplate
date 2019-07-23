@@ -6,46 +6,47 @@
         "start": "cd dist && node server"
     },
     "devDependencies": {
-        "@babel/core": "^7.4.5",
-        "@babel/preset-env": "^7.4.5",
+        "@babel/core": "^7.5.5",
+        "@babel/preset-env": "^7.5.5",
         "@babel/preset-react": "^7.0.0",
-        "@babel/register": "^7.4.4",
+        "@babel/register": "^7.5.5",
         "@types/express": "^4.17.0",
         "@types/nunjucks": "^3.1.1",
-        "@types/react": "^16.8.13",
-        "@types/react-dom": "^16.8.3",
-        "@types/react-redux": "^7.0.5",
-        "@types/react-router-dom": "^4.3.3",
+        "@types/react": "^16.8.23",
+        "@types/react-dom": "^16.8.4",
+        "@types/react-redux": "^7.1.1",
+        "@types/react-router-dom": "^4.3.4",
         "babel-loader": "^8.0.6",
-        "browser-sync": "^2.26.5",
+        "browser-sync": "^2.26.7",
         "clean-webpack-plugin": "^3.0.0",
-        "del": "^4.0.0",
-        "gulp": "^4.0.0",
-        "gulp-autoprefixer": "^6.0.0",
+        "del": "^5.0.0",
+        "gulp": "^4.0.2",
+        "gulp-autoprefixer": "^6.1.0",
         "gulp-csso": "^3.0.1",
         "gulp-imagemin": "^6.0.0",
         "gulp-nunjucks": "^5.0.0",
         "gulp-plumber": "^1.2.1",
         "gulp-rename": "^1.4.0",
         "gulp-rev": "^9.0.0",
-        "gulp-shell": "^0.7.0",
+        "gulp-shell": "^0.7.1",
         "gulp-stylus": "^2.7.0",
         "gulp-util": "^3.0.8",
         "nunjucks": "^3.2.0",
         "react-svg-loader": "^3.0.3",
-        "ts-loader": "^6.0.2",
-        "typescript": "^3.3.4000",
-        "webpack": "^4.34.0",
+        "ts-loader": "^6.0.4",
+        "typescript": "^3.5.3",
+        "webpack": "^4.37.0",
         "webpack-assets-manifest": "^3.1.1"
     },
     "dependencies": {
+        "core-js": "^3.1.4",
         "express": "^4.17.1",
         "immutable": "^4.0.0-rc.12",
-        "react": "^16.8.4",
-        "react-dom": "^16.8.4",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
         "react-redux": "^7.1.0",
         "react-router-dom": "^5.0.1",
-        "redux": "^4.0.1",
+        "redux": "^4.0.4",
         "redux-thunk": "^2.3.0"
     },
     "babel": {
@@ -53,5 +54,10 @@
             "@babel/preset-env",
             "@babel/preset-react"
         ]
-    }
+    },
+    "browserslist": [
+        "last 5 version",
+        "> 1%",
+        "ie 11"
+    ]
 }

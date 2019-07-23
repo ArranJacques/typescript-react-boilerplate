@@ -23,8 +23,13 @@ export const css = () => new Promise(resolve => {
             }
         }))
         .pipe(stylus({ 'include css': true }))
-        .pipe(autoPrefixer('last 5 version', '> 1%'))
-        .pipe(minifyCss())
+        .pipe(autoPrefixer())
+        .pipe(minifyCss({
+            // This is necessary to keep duplicate properties, which is necessary when using
+            // fallback properties values for cross browser compatibility. Looking at you
+            // IE11...
+            restructure: false
+        }))
         .pipe(rev())
         .pipe(gulp.dest(distPathStatic))
         .pipe(rev.manifest(path.resolve(distPath, 'css-manifest.json'), {

@@ -1,7 +1,7 @@
 import Browser from 'browser-sync';
 import gulp from 'gulp';
+import { html, watch as watchHtml } from './html';
 import { watch as watchCss } from './css';
-import { html } from './html';
 import { watch as watchImages } from './images';
 import { watch as watchJs } from './scripts';
 
@@ -29,5 +29,11 @@ export const devServer = () => new Promise(resolve => {
 
     const series = [html, reloadServer];
 
-    gulp.series(watchCss(series), watchJs(series), watchImages(series), startServer)();
+    gulp.series(
+        watchCss(series),
+        watchJs(series),
+        watchImages(series),
+        watchHtml([reloadServer]),
+        startServer
+    )();
 });

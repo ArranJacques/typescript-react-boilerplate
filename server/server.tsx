@@ -4,7 +4,7 @@ import { renderToString } from 'react-dom/server';
 import html from './html';
 import getStore from '../src/foundation/store';
 import { Provider } from 'react-redux';
-import HomePage from '../src/view/pages/HomePage';
+import HomePage from '../src/view/5-pages/home/HomePage';
 
 const PORT = process.env.PORT || 3000;
 const app = express();

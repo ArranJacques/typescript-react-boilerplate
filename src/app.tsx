@@ -1,10 +1,11 @@
+import 'core-js';
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
 import getStore from 'foundation/store';
 import ScrollToTop from 'support/components/ScrollToTop';
-import HomePage from 'view/pages/HomePage';
+import HomePage from 'view/5-pages/home/HomePage';
 
 const app: HTMLElement | null = document.getElementById('app');
 

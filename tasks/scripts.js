@@ -1,3 +1,4 @@
+import del from 'del';
 import gulp from 'gulp';
 import path from 'path';
 import webpack from 'webpack';
@@ -8,6 +9,10 @@ const mode = process.env.NODE_ENV || 'development';
 const srcPath = path.resolve(__dirname, '../src');
 const distPath = path.resolve(__dirname, '../dist');
 const distPathStatic = path.resolve(distPath, 'static');
+
+const include = [
+    /src/
+];
 
 const config = {
     mode: mode,
@@ -22,7 +27,10 @@ const config = {
         rules: [
             {
                 test: /\.tsx?$/,
-                use: 'ts-loader',
+                use: {
+                    loader: 'ts-loader',
+                    options: { allowTsInNodeModules: true }
+                },
                 exclude: [/node_modules/]
             },
             {
@@ -48,7 +56,8 @@ const config = {
     ],
     resolve: {
         modules: [srcPath, 'node_modules'],
-        extensions: ['.tsx', '.ts', '.js']
+        extensions: ['.tsx', '.ts', '.js'],
+        symlinks: false
     },
     optimization: {
         runtimeChunk: 'single',
@@ -69,22 +78,37 @@ config.plugins.push(mode === 'development'
     : new webpack.HashedModuleIdsPlugin()
 );
 
+const copyVendorFiles = () => new Promise(resolve => {
+
+    // Remove if you ever need to copy vendor files directly into the dist
+    // directory.
+    return resolve();
+
+    const vendorSrc = [
+        //
+    ];
+
+    const vendorDist = path.resolve(distPathStatic, 'vendor');
+
+    del(path.resolve(vendorDist, '**/*')).then(() => gulp.src(vendorSrc)
+        .pipe(gulp.dest(vendorDist))
+        .on('end', resolve)
+    );
+});
+
 export const scripts = () => new Promise(resolve => webpack(config, (err, stats) => {
+
     if (err) {
         console.log('Webpack', err);
     }
-    console.log(stats.toString({ /* stats options */ }));
-    resolve();
+
+    console.log(stats.toString());
+
+    copyVendorFiles().then(resolve);
 }));
 
 export const watch = series => () => new Promise(resolve => {
-
-    const paths = [
-        path.resolve(srcPath, '**/*.ts'),
-        path.resolve(srcPath, '**/*.tsx')
-    ];
-
+    const paths = path.resolve(srcPath, '**/*.ts');
     gulp.watch(paths, { interval: 100 }, gulp.series(scripts, ...series));
-
     resolve();
 });

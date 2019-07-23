@@ -13,12 +13,12 @@ const getData = () => {
     const jsManifest = getJsManifest();
     return {
         css: [
-            cssManifest['app.css']
+            cssManifest['app.css'] || ''
         ],
         js: [
-            jsManifest['runtime.js'],
-            jsManifest['vendors.js'],
-            jsManifest['main.js']
+            jsManifest['runtime.js'] || '',
+            jsManifest['vendors.js'] || '',
+            jsManifest['main.js'] || ''
         ]
     };
 };
