@@ -1,3 +1,4 @@
+
 import del from 'del';
 import gulp from 'gulp';
 import path from 'path';
@@ -17,7 +18,7 @@ const srcFiles = [
 ];
 
 export const fonts = () => new Promise(resolve => {
-    del(path.resolve(distPathStatic + '**/*')).then(() => gulp.src(srcFiles)
+    del(path.resolve(distPathStatic, '**/*')).then(() => gulp.src(srcFiles)
         .pipe(gulp.dest(distPathStatic))
         .on('end', resolve)
     );

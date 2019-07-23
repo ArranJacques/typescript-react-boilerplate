@@ -17,7 +17,7 @@ const srcFiles = [
 ];
 
 export const images = () => new Promise(resolve => {
-    del(path.resolve(distPathStatic + '**/*')).then(() => gulp.src(srcFiles)
+    del(path.resolve(distPathStatic, '**/*')).then(() => gulp.src(srcFiles)
         .pipe(imageMin())
         .pipe(gulp.dest(distPathStatic))
         .on('end', resolve)
