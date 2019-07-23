@@ -1,11 +1,11 @@
-import React, { ReactNode } from 'react';
+import React, { PureComponent, ReactNode } from 'react';
 
 interface Props {
     randomiseText: () => void
     text: string
 }
 
-export default class HelloText extends React.PureComponent<Props> {
+export default class HelloText extends PureComponent<Props> {
 
     public componentDidMount(): void {
         const { randomiseText } = this.props;

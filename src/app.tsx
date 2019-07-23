@@ -5,7 +5,7 @@ import ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
 import getStore from 'foundation/store';
 import ScrollToTop from 'support/components/ScrollToTop';
-import HomePage from 'view/pages/HomePage';
+import HomePage from 'view/5-pages/home/HomePage';
 
 const app: HTMLElement | null = document.getElementById('app');
 
