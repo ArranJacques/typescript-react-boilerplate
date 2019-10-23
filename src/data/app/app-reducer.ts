@@ -1,21 +1,18 @@
 import * as app from 'data/app/app-actions';
 import { Record } from 'immutable';
 
-export interface AppState {
+interface Props {
     hello: string
 }
 
-const StateFactory = Record<AppState>({
+const defaultValues: Props = {
     hello: 'World'
-});
+};
 
-class State extends StateFactory implements AppState {
-    constructor(config: Partial<AppState>) {
-        super(config);
-    }
-}
+export type AppState = Record<Props>;
+export const State = Record<Props>(defaultValues);
 
-export default (initial: {} = {}) => (state: State = new State(initial), action: app.Action) => {
+export default (state: AppState = new State(), action: app.Action): AppState => {
 
     switch (action.type) {
         case app.ActionType.SetHello:
