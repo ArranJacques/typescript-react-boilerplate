@@ -2,7 +2,7 @@
     "scripts": {
         "build-dev": "NODE_ENV=development gulp build --require @babel/register --gulpfile tasks",
         "build": "NODE_ENV=production gulp build --require @babel/register --gulpfile tasks",
-        "server": "NODE_ENV=development gulp server --require @babel/register --gulpfile tasks"
+        "dev": "NODE_ENV=development gulp server --require @babel/register --gulpfile tasks"
     },
     "devDependencies": {
         "@babel/core": "^7.6.4",
