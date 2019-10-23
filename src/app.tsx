@@ -1,20 +1,22 @@
 import 'core-js';
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
-import getStore from 'foundation/store';
+import getStore from 'data/store';
+import hello from 'presentation/containers/hello-container';
+import ReactDom from 'react-dom';
+import HomePage from 'presentation/components/5-pages/home/HomePage';
 import ScrollToTop from 'support/components/ScrollToTop';
-import HomePage from 'view/5-pages/home/HomePage';
 
 const app: HTMLElement | null = document.getElementById('app');
+const ComposedHomePage = hello(HomePage);
 
 if (app) {
     ReactDom.render((
         <Provider store={getStore()}>
             <Router>
                 <ScrollToTop>
-                    <Route path="/" exact component={HomePage} />
+                    <Route path="/" exact component={ComposedHomePage} />
                 </ScrollToTop>
             </Router>
         </Provider>

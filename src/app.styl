@@ -1,15 +1,46 @@
-//@require 'support/**/*'
-@require 'foundation'
+@require 'foundation';
 
 html
 body
-    width 100%
     height 100%
-    font-variant-numeric initial
-
-#app
     width 100%
-    height 100%
+    padding 0
+    margin 0
+    font-family: Typography.fonts.primary
+    font-size: Typography.sizes.base
+    font-weight: Typography.weights.regular
+    line-height 1.6
 
-@require 'services/**/*'
-@require 'view'
+#__next
+    height 100%
+    width 100%
+
+input
+select
+textarea
+button
+    appearance none
+    padding 0
+    margin 0
+    font-family: Typography.fonts.primary
+    font-size: Typography.sizes.base
+    font-weight: Typography.weights.regular
+    border none
+    border-radius 0
+    background transparent
+    outline none
+    resize none
+
+fieldset
+    padding 0
+    margin 0
+    border none
+
+strong
+    font-weight: Typography.weights.bold
+
+//@require 'presentation/components/1-atoms/**/*.styl'
+//@require 'presentation/components/2-elements/**/*.styl'
+//@require 'presentation/components/3-organisms/**/*.styl'
+//@require 'presentation/components/4-layouts/**/*.styl'
+@require 'presentation/components/5-pages/**/*.styl'

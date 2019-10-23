@@ -1,24 +1,24 @@
+import * as app from 'data/app/app-actions';
 import { connect } from 'react-redux';
+import { randomHello } from 'domain/random-hello';
 import { ThunkDispatch } from 'redux-thunk';
-import * as app from 'services/app/data/actions/app-actions';
-import { randomEntity } from 'services/app/domain/random-entity';
-import State from 'foundation/state';
+import State from 'data/state';
 
 interface StateProps {
-    text: string
+    hello: string
 }
 
 interface DispatchProps {
-    randomiseText: () => void
+    randomiseHello: () => void
 }
 
 const mapStateToProps = (state: State): StateProps => ({
-    text: state.app.hello
+    hello: state.app.hello
 });
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<State, void, app.Action>): DispatchProps => ({
-    randomiseText: () => {
-        dispatch(app.setHello(randomEntity()));
+    randomiseHello: () => {
+        dispatch(app.setHello(randomHello()));
     }
 });
 

@@ -3,7 +3,7 @@ import del from 'del';
 import gulp from 'gulp';
 import path from 'path';
 
-const srcPath = path.resolve(__dirname, '../src/fonts');
+const srcPath = path.resolve(__dirname, '../public/fonts');
 const srcGlob = path.resolve(srcPath, '**/*');
 const distPath = path.resolve(__dirname, '../dist');
 const distPathStatic = path.resolve(distPath, 'static/fonts');

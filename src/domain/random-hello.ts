@@ -6,4 +6,4 @@ const entities: string[] = [
     'World'
 ];
 
-export const randomEntity = (): string => entities[Math.floor(Math.random() * entities.length)];
+export const randomHello = (): string => entities[Math.floor(Math.random() * entities.length)];

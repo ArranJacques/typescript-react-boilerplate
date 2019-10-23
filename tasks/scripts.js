@@ -1,8 +1,8 @@
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import del from 'del';
 import gulp from 'gulp';
 import path from 'path';
 import webpack from 'webpack';
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import WebpackAssetsManifest from 'webpack-assets-manifest';
 
 const mode = process.env.NODE_ENV || 'development';

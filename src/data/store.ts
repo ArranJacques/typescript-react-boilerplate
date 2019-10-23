@@ -1,7 +1,7 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux';
 import thunk, { ThunkMiddleware } from 'redux-thunk';
-import getAppReducer from 'services/app/data/reducers/app-reducer';
-import State from 'foundation/state';
+import getAppReducer from 'data/app/app-reducer';
+import State from 'data/state';
 
 export default () => createStore(
     combineReducers({ app: getAppReducer() }),

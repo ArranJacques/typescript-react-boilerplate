@@ -1,4 +1,4 @@
-import * as app from 'services/app/data/actions/app-actions';
+import * as app from 'data/app/app-actions';
 import { Record } from 'immutable';
 
 export interface AppState {

@@ -3,7 +3,7 @@ import gulp from 'gulp';
 import imageMin from 'gulp-imagemin';
 import path from 'path';
 
-const srcPath = path.resolve(__dirname, '../src/images');
+const srcPath = path.resolve(__dirname, '../public/images');
 const srcGlob = path.resolve(srcPath, '**/*');
 const distPath = path.resolve(__dirname, '../dist');
 const distPathStatic = path.resolve(distPath, 'static/images');
