@@ -6,6 +6,7 @@ import minifyCss from 'gulp-csso';
 import path from 'path';
 import plumber from 'gulp-plumber';
 import rev from 'gulp-rev';
+import runtimeConfig from './runtime-config';
 import stylus from 'gulp-stylus';
 
 const srcPath = path.resolve(__dirname, '../src');
@@ -22,7 +23,14 @@ export const css = () => new Promise(resolve => {
                 gulpUtil.log(gulpUtil.colors.red(err));
             }
         }))
-        .pipe(stylus({ 'include css': true }))
+        .pipe(stylus({
+            define: runtimeConfig,
+            import: [
+                path.resolve(srcPath, 'foundation/index'),
+                path.resolve(srcPath, 'support/index')
+            ],
+            'include css': true,
+        }))
         .pipe(autoPrefixer())
         .pipe(minifyCss({
             // This is necessary to keep duplicate properties, which is necessary when using

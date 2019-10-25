@@ -3,13 +3,21 @@ import del from 'del';
 import gulp from 'gulp';
 import hash from 'string-hash';
 import path from 'path';
-import webpack from 'webpack';
+import runtimeConfig from './runtime-config';
+import webpack, { DefinePlugin } from 'webpack';
 import WebpackAssetsManifest from 'webpack-assets-manifest';
 
 const mode = process.env.NODE_ENV || 'development';
 const srcPath = path.resolve(__dirname, '../src');
 const distPath = path.resolve(__dirname, '../dist');
 const distPathStatic = path.resolve(distPath, 'static');
+
+const webpackRuntimeConfig = { 'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV) } };
+for (const key  in runtimeConfig) {
+    if (runtimeConfig.hasOwnProperty(key)) {
+        webpackRuntimeConfig[key] = JSON.stringify(runtimeConfig[key]);
+    }
+}
 
 const config = {
     mode: mode,
@@ -64,7 +72,8 @@ const config = {
         new WebpackAssetsManifest({
             output: path.resolve(distPath, 'js-manifest.json'),
             merge: true
-        })
+        }),
+        new DefinePlugin(webpackRuntimeConfig)
     ],
     resolve: {
         modules: [srcPath, 'node_modules'],

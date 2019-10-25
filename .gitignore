@@ -19,9 +19,6 @@ Thumbs.db
 npm-debug.*
 yarn-error.*
 
-# Environment files and directories
-env.json
-
 # Build files and directories
 dist
 
