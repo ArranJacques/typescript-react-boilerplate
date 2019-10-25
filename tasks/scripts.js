@@ -1,6 +1,7 @@
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import del from 'del';
 import gulp from 'gulp';
+import hash from 'string-hash';
 import path from 'path';
 import webpack from 'webpack';
 import WebpackAssetsManifest from 'webpack-assets-manifest';
@@ -9,10 +10,6 @@ const mode = process.env.NODE_ENV || 'development';
 const srcPath = path.resolve(__dirname, '../src');
 const distPath = path.resolve(__dirname, '../dist');
 const distPathStatic = path.resolve(distPath, 'static');
-
-const include = [
-    /src/
-];
 
 const config = {
     mode: mode,
@@ -35,13 +32,28 @@ const config = {
             },
             {
                 test: /\.svg$/,
-                use: [
-                    { loader: 'babel-loader' },
-                    {
-                        loader: 'react-svg-loader',
-                        options: { jsx: true }
+                use: ({ issuer, resource }) => ({
+                    loader: '@svgr/webpack',
+                    options: {
+                        dimensions: false,
+                        svgo: true,
+                        svgoConfig: {
+                            plugins: [
+                                { cleanupListOfValues: true },
+                                { cleanupNumericValues: true },
+                                { removeDesc: true },
+                                { removeEmptyAttrs: true },
+                                { removeEmptyContainers: true },
+                                { removeEmptyText: true },
+                                { removeRasterImages: true },
+                                { removeTitle: true },
+                                { removeUselessDefs: true },
+                                { removeUnusedNS: true },
+                                { cleanupIDs: { prefix: `${hash(issuer + resource)}` } }
+                            ]
+                        }
                     }
-                ]
+                })
             }
         ]
     },
