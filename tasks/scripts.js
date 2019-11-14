@@ -129,7 +129,7 @@ export const scripts = () => new Promise(resolve => webpack(config, (err, stats)
 }));
 
 export const watch = series => () => new Promise(resolve => {
-    const paths = path.resolve(srcPath, '**/*.ts');
+    const paths = [path.resolve(srcPath, '**/*.ts'), path.resolve(srcPath, '**/*.tsx')];
     gulp.watch(paths, { interval: 100 }, gulp.series(scripts, ...series));
     resolve();
 });
