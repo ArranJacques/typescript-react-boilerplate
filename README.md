@@ -20,7 +20,7 @@ This is an opinionated boilerplate for [React](https://reactjs.org/) projects.
 
 ### Architecture
 
-Most of an application's logic is located in the `src` directory. The application uses a layered architecture where higher level layers can utilise lower level layers, but not the other way around. E.g., containers in the `presentation` layer may make use of logic in the `domain` layer or data from the `data` layer, but domain logic in the `domain` layer should never be aware of `presentation` layer.
+Most of an application's logic is located in the `src` directory. The application uses a layered architecture where higher level layers can utilise lower level layers, but not the other way around. E.g., containers in the `presentation` layer may make use of logic in the `domain` layer or data from the `persistence` layer, but domain logic in the `domain` layer should never be aware of `presentation` layer.
 
 - `src/presentation` - **presentation layer**
     - `/components` - presentational components.
@@ -57,7 +57,7 @@ npm run build-dev
 ```
 
 ## Production Build
-    
+
 ```bash
 npm run build
 ```
