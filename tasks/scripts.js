@@ -38,7 +38,7 @@ const config = {
                 },
                 include: [
                     /src/,
-                    // Add node_modules packages here that have typescript in...
+                    // Add node_modules packages here that have typescript in...33
                 ]
             },
             {
