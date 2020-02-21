@@ -17,19 +17,28 @@ const getJsManifest = () => JSON.parse(
     fs.readFileSync('./dist/js-manifest.json').toString()
 );
 
-const getData = () => {
+const getAssets = () => {
+
     const cssManifest = getCssManifest();
     const jsManifest = getJsManifest();
-    return {
-        css: [
-            cssManifest['app.css'] || ''
-        ],
-        js: [
-            jsManifest['runtime.js'] || '',
-            jsManifest['vendors.js'] || '',
-            jsManifest['main.js'] || ''
-        ]
-    };
+
+    const css = [];
+    if (cssManifest['app.css']) {
+        css.push(cssManifest['app.css']);
+    }
+
+    const js = [];
+    if (jsManifest['runtime.js']) {
+        js.push(jsManifest['runtime.js']);
+    }
+    if (jsManifest['vendors.js']) {
+        js.push(jsManifest['vendors.js']);
+    }
+    if (jsManifest['main.js']) {
+        js.push(jsManifest['main.js']);
+    }
+
+    return { css, js };
 };
 
 export const html = () => new Promise(resolve => {
@@ -41,7 +50,7 @@ export const html = () => new Promise(resolve => {
                 gulpUtil.log(gulpUtil.colors.red(err));
             }
         }))
-        .pipe(gulpNunjucks.compile(getData(), {
+        .pipe(gulpNunjucks.compile(getAssets(), {
             env: new nunjucks.Environment(new nunjucks.FileSystemLoader(srcPath))
         }))
         .pipe(gulp.dest(distPath))
