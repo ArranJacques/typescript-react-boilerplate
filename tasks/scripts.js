@@ -36,7 +36,10 @@ const config = {
                     loader: 'ts-loader',
                     options: { allowTsInNodeModules: true }
                 },
-                exclude: [/node_modules/]
+                include: [
+                    /src/,
+                    // Add node_modules packages here that have typescript in...
+                ]
             },
             {
                 test: /\.svg$/,
